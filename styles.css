@@ -1,0 +1,1046 @@
+/* -------------------------
+   PALETA (referencia)
+   #8B8589  (taupe gray)        fondo neutro / texto secundario
+   #C7EA46  (lime pear)         color principal / acento
+   #631D76  (púrpura)           acento contraste
+   #A8DADC  (azul suave)        fondo suave / blocks
+   #307351  (verde profundo)    profundidad / fondos oscuros
+   #dbd2c8  (naranja claro)     fondos claros / tipografía cálida
+---------------------------- */
+
+/* RESET SUAVE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1a1a1a;
+  background-color: #dbd2c8; /* base cálida */
+  line-height: 1.5;
+}
+
+/* Contenedor ancho fijo tipo landing */
+.container {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  background-color: #8B8589; /* color uniforme con el resto del sitio */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;       /* mantiene todo centrado verticalmente */
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 0.5rem 1.25rem;   /* menos espacio vertical para móviles */
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  height: 90px; /* tamaño cómodo en escritorio */
+  width: auto;
+  display: block;
+  transition: height 0.3s ease;
+}
+
+/* ---------- LINKS DESKTOP ---------- */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  position: static;
+  background: transparent;
+  box-shadow: none;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #307351;
+}
+
+/* ---------- BOTÓN OUTLINE ---------- */
+.btn-outline {
+  border: 2px solid #1a1a1a;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  line-height: 1;
+  font-weight: 600;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-outline:hover {
+  background-color: #C7EA46;
+  border-color: #C7EA46;
+  color: #1a1a1a;
+}
+
+/* ---------- HAMBURGUESA ---------- */
+.nav-toggle {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  
+  cursor: pointer;
+  display: none; /* solo visible en mobile */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.burger-line {
+  width: 24px;
+  height: 2px;
+  background-color: #1a1a1a;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+/* ---------- MOBILE / TABLET ---------- */
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: flex;
+    align-self: center;
+    margin-left: 75%;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background-color: #dbd2c8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.25rem 1.5rem;
+    display: none; /* cerrado por defecto */
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+    width: 100%;
+    display: block;
+  }
+
+  .btn-outline {
+    border-radius: 0.5rem;
+  }
+
+  /* Menú abierto */
+  .nav-links.open {
+    display: flex;
+  }
+
+  /* Animación hamburguesa -> X */
+  .nav-toggle.active .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle.active .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.active .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .brand-logo {
+    height: 60px; /* logo más pequeño en celulares */
+  }
+
+   .nav-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand {
+    display: flex;
+    align-items: center;         /* centra verticalmente el logo dentro del contenedor */
+  }
+ 
+
+}
+
+/* ============================
+   SELECTOR DE IDIOMA
+============================ */
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+}
+
+.lang-button {
+  background-color: #8B8589;
+  color: #1a1a1a;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 2px solid #1a1a1a;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-button:hover {
+background-color: #C7EA46;
+  border-color: #C7EA46;
+  color: #307351;
+}
+
+/* Dropdown container */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%;
+  z-index: 100;
+  min-width: 160px;
+  background-color: #8B8589;
+  border: 2px solid #C7EA46;
+  border-radius: 0 15px 15px 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+/* Links */
+.dropdown-content a {
+  color: #1a1a1a;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.dropdown-content a:hover {
+  background-color: #C7EA46;
+  color: #1a1a1a;
+}
+
+/* Mostrar dropdown al hover o click */
+.language-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Pequeño ajuste responsive */
+@media (max-width: 900px) {
+  .language-dropdown {
+    width: 100%;
+  }
+  .dropdown-content {
+    left: 0;
+    right: auto;
+  }
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(48,115,81,0.75) 0%, rgba(0,0,0,0.8) 60%);
+  /* mezcla verde profundo + overlay oscuro estilo "serio consultora" */
+}
+
+.hero-content {
+  position: relative;
+  max-width: 700px;
+  padding: 4rem 0;
+  color: #fff;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 1.1vw + 1.6rem, 2.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #A8DADC; /* azul suave para contraste sobre oscuro */
+  max-width: 40ch;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 2rem;
+  background-color: #C7EA46; /* lima enérgico */
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(199,234,70,0.3);
+  transition: all 0.18s ease;
+}
+
+.btn-primary:hover {
+  background-color: #d8ff4a;
+  box-shadow: 0 12px 32px rgba(199,234,70,0.45);
+}
+
+/* EYEBROW / etiqueta pequeña arriba del título */
+.eyebrow {
+  color: #631D76;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+/* SOMOS */
+.about {
+  padding: 4rem 0;
+  color: #1a1a1a;
+}
+
+.about-header {
+  margin-bottom: 2rem;
+}
+
+.about-title {
+  font-size: clamp(1.8rem, 0.5vw + 1.5rem, 2.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+  letter-spacing: -0.03em;
+}
+
+.about-content {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr minmax(240px, 320px);
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  max-width: 65ch;
+}
+
+/* tarjeta quote */
+.about-card {
+  background-color: #307351;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 1px; /* truco para borde-gradiente más adelante */
+  display: flex;
+  align-items: stretch;
+}
+
+.about-card-inner {
+  background: radial-gradient(circle at 0% 0%, rgba(99,29,118,0.4) 0%, rgba(48,115,81,0) 60%);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.quote {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.sig {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: #C7EA46;
+  font-weight: 600;
+}
+
+/* SERVICIOS */
+.services {
+  background-color: #A8DADC;
+  padding: 4rem 0;
+  color: #1a1a1a;
+}
+
+.services-title {
+  font-size: clamp(1.6rem, 0.5vw + 1.2rem, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+  letter-spacing: -0.03em;
+  max-width: 40ch;
+  margin-bottom: 2rem;
+}
+
+.services-grid {
+  display: grid;
+  gap: 1.5rem;
+  /* Modo mobile por defecto */
+  grid-template-columns: 1fr;
+}
+
+/* Tablet: 2 columnas si hay espacio suficiente */
+@media (min-width: 600px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: exactamente 3 columnas (=> 2 filas de 3 con tus 6 servicios) */
+@media (min-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+.service-item {
+  background-color: #fff;
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  border: 2px solid rgba(0,0,0,0.05);
+}
+
+.service-item h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #307351;
+  margin-bottom: 0.5rem;
+}
+
+.service-item p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+/* CONTACT CTA */
+.contact-cta {
+  background-color: #307351;
+  color: #fff;
+  padding: 3rem 0;
+}
+
+.contact-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.contact-text h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.contact-text p {
+  font-size: 0.95rem;
+  color: #A8DADC;
+  max-width: 45ch;
+  line-height: 1.5;
+}
+
+.btn-secondary {
+  border: none;
+  color: #fff;
+  background-image: linear-gradient(45deg, #307351, #631D76, #C7EA46);
+  background-size: 100% auto;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.9rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 0 0 0 rgba(99, 29, 118, 0.4);
+}
+
+.btn-secondary:hover {
+  background-position: right center;
+  background-size: 200% auto;
+  animation: pulseLoopsmith 1.6s infinite;
+}
+
+/* ANIMACIÓN DE “PULSO” */
+@keyframes pulseLoopsmith {
+  0% {
+    box-shadow: 0 0 0 0 rgba(199, 234, 70, 0.45); /* verde lima */
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(199, 234, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(199, 234, 70, 0);
+  }
+}
+
+/* FOOTER */
+.footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 2rem 0;
+  font-size: 0.85rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.footer-brand {
+  color: #fff;
+  font-weight: 500;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-nav a {
+  color: #A8DADC;
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: #C7EA46;
+}
+
+/* RESPONSIVE AJUSTES */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    gap: 1rem 1.25rem;
+  }
+}
+
+/* ================================
+   Tarjeta ampliada (popup)
+=================================*/
+.service-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.service-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.service-popup {
+  position: relative;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 18px;
+  padding: 2rem;
+  width: min(90%, 600px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+  transform: scale(0.8) translateY(30px);
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+.service-overlay.active .service-popup {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.service-popup h3 {
+  color: #C7EA46;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+.service-popup p {
+  color: #dbd2c8;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #C7EA46;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.close-btn:hover {
+  transform: rotate(90deg) scale(1.1);
+}
+.service-popup ul {
+  text-align: left;
+  margin: 0.5rem 0 0.5rem 1.2rem;
+  list-style: disc;
+  color: #A8DADC;
+}
+.service-popup strong {
+  color: #C7EA46;
+}
+
+@media (max-width: 900px) {
+  .service-overlay {
+    align-items: flex-start; /* popup anclado arriba, no centrado */
+    padding-top: 15rem;     /* agrega margen superior */
+  }
+
+  .service-popup {
+    margin-top: 1.5rem;      /* espacio adicional arriba */
+    width: 90%;
+    padding: 1.8rem;
+    max-height: 85vh;        /* más espacio vertical disponible */
+  }
+}
+
+@media (max-width: 600px) {
+  .service-overlay {
+    padding-top: 6rem;       /* más margen superior en celulares */
+  }
+
+  .service-popup {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    width: 92%;
+  }
+}
+
+
+
+
+
+
+
+
+/* ----------------------------
+   EQUIPO / NUESTRO EQUIPO
+----------------------------- */
+
+.team-body {
+ background: radial-gradient(circle at 0% 0%, rgba(99, 29, 118, 0.25) 0%, rgba(48, 115, 81, 0.8) 60%);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-section {
+  flex: 1;
+  padding: 5rem 0 3rem;
+  color: #fff;
+}
+
+.team-title {
+  font-size: clamp(2rem, 1.2vw + 1.6rem, 2.75rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.team-intro {
+  text-align: center;
+  max-width: 60ch;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  color: #dbd2c8;
+}
+
+/* Tarjetas del equipo */
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem; /* más aire entre las tarjetas */
+  margin-top: 2rem;
+}
+
+.team-card {
+  width: 300px; /* más anchas */
+  height: 360px; /* más altas */
+  background: #101010; /* gris oscuro */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 22px;
+  color: #fff;
+  text-align: center;
+  font-family: inherit;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-8px) scale(1.04);
+}
+
+/* Borde animado */
+.team-card::before {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 140%;
+  background-image: linear-gradient(
+    180deg,
+    #C7EA46, /* verde lima */
+    #631D76  /* púrpura */
+  );
+  animation: rotateBorder 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fondo interior */
+.team-card::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 18px;
+  background: #1a1a1a;
+  z-index: 0;
+}
+
+/* Contenido */
+.team-card .team-avatar {
+  width: 90px;
+  height: 90px;
+  background-color: #C7EA46;
+  color: #307351;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-avatar {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.team-card h3 {
+  z-index: 1;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.team-card .role {
+  z-index: 1;
+  color: #C7EA46;
+  font-weight: 500;
+  margin-bottom: 0.9rem;
+}
+
+.team-card .desc {
+  z-index: 1;
+  font-size: 1rem;
+  color: #dbd2c8;
+  line-height: 1.6;
+  padding: 0 1rem;
+  max-width: 240px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .team-card {
+    width: 85%;
+    height: auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .team-grid {
+    gap: 2rem;
+  }
+}
+
+/* Avatar / iniciales */
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #C7EA46;
+  color: #307351;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1rem;
+  transition: transform 0.4s ease;
+}
+.team-card:hover .team-avatar {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.team-card h3 {
+  margin-bottom: 0.25rem;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.team-card .role {
+  color: #C7EA46;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.team-card .desc {
+  font-size: 0.95rem;
+  color: #dbd2c8;
+  line-height: 1.5;
+}
+/* ----- FOOTER SOCIAL CARD (INTEGRADO) ----- */
+
+.footer-social {
+  margin-top: 3rem;
+  text-align: center;
+  color: #dbd2c8;
+}
+
+.footer-social h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #C7EA46;
+  margin-bottom: 1.5rem;
+}
+
+.social-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tarjeta */
+.social-card {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: #1a1a1a;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: rgba(0,0,0,0.2) 0px 7px 29px;
+  transition: all 1s ease-in-out;
+}
+
+.social-card:hover {
+  transform: scale(1.05);
+}
+
+.sc-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(45deg, #307351 0%, #631D76 50%, #C7EA46 100%);
+}
+
+.sc-logo {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  transition: all 0.6s ease-in-out;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-svg {
+  fill: white;
+  width: 26px;
+  height: 26px;
+  margin-bottom: 0.4rem;
+}
+
+/* Íconos */
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.svg {
+  fill: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+.sc-box {
+  position: absolute;
+  padding: 10px;
+  text-align: right;
+  background: rgba(255, 255, 255, 0.25);
+  border-top: 2px solid #fff;
+  border-right: 1px solid #fff;
+  border-radius: 12% 13% 42% 0%/10% 12% 75% 0%;
+  box-shadow: rgba(0,0,0,0.25) -7px 7px 29px;
+  transform-origin: bottom left;
+  transition: all 1s ease-in-out;
+}
+
+.sc-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.sc-box:hover .svg {
+  fill: white;
+  filter: drop-shadow(0 0 5px white);
+}
+
+/* Instagram */
+.sc-box1 {
+  width: 70%;
+  height: 70%;
+  bottom: -70%;
+  left: -70%;
+}
+
+.sc-box1::before {
+  background: radial-gradient(circle at 30% 107%, #C7EA46 0%, #ff53d4 50%, #A8DADC 90%);
+}
+
+/* LinkedIn */
+.sc-box2 {
+  width: 52%;
+  height: 52%;
+  bottom: -52%;
+  left: -52%;
+  transition-delay: 0.2s;
+}
+
+.sc-box2::before {
+  background: radial-gradient(circle at 30% 107%, #A8DADC 0%, #2A66BC 90%);
+}
+
+/* Mail — ahora más grande y visible */
+.sc-box4 {
+  width: 38%;
+  height: 38%;
+  bottom: -38%;
+  left: -38%;
+  transition-delay: 0.3s;
+}
+
+.sc-box4::before {
+  background: radial-gradient(circle at 30% 107%, #ffffff 0%, #8B8589 90%);
+}
+
+
+/* Hover general */
+.social-card:hover .sc-box {
+  bottom: -1px;
+  left: -1px;
+}
+
+.social-card:hover .sc-box::before {
+  opacity: 1;
+}
+
+.social-card:hover .sc-logo {
+  transform: translate(70px, -52px);
+  letter-spacing: 0px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .social-card {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+
