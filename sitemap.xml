@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<url>
+  <loc>https://www.loop-smith.com/?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnEeAKGpYP1ndFCrQEwbXH5nroJBlw-A3UeRfO4P2H6r_xfnpFpN9fj4ieXVU_aem_M7aiDazEdAK_Mq0EReU98Q</loc>
+  <lastmod>2025-10-31T20:19:15+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.loop-smith.com/equipo.html</loc>
+  <lastmod>2025-10-31T20:19:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.loop-smith.com/index.html</loc>
+  <lastmod>2025-10-31T20:19:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.loop-smith.com/indexEn.html</loc>
+  <lastmod>2025-10-31T20:19:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.loop-smith.com/equipoEn.html</loc>
+  <lastmod>2025-10-31T20:19:15+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
